@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Decloud pastebin</title>
+    <link rel="stylesheet" type="text/css" href="lib/highlight/styles/darkula.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="font/stylesheet.css" media="all" />
+    <script src="lib/canvas/html2canvas.min.js"></script>
+    <script src="lib/highlight/highlight.pack.js"></script>
+  </head>
+  <body>
+    <section class="formArea">
+      <div class="head">
+        <div class="space"></div>
+        <button onclick="showImage()" id="showImage">
+          Show
+        </button>
+        <button onclick="hideImage()" style="display: none" id="hideImage">
+          Hide
+        </button>
+        <button onclick="saveImage()">
+          Save
+        </button>
+      </div>
+      <div id="form">
+        <div class="container">
+          <div id="lines"></div>
+          <textarea id="textarea">/*                                                      ↑                ↑
+ * Paste code here                               See preview here   Save as png
+ */</textarea>
+          <pre><code id="code"></code></pre>
+        </div>
+      </div>
+    </section>
+    <script type="text/javascript" src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+html, body {
+  margin: 0;
+}
+body {
+  background: #333;
+  color: #fff;
+  font-family: sans-serif;
+  overflow-x: hidden;
+  max-wodth: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.formArea {
+  display: block;
+  margin: 80px auto;
+  max-width: 740px;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #111;
+  border-radius: 4px;
+  padding: 20px 20px 0 60px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
+}
+
+.container textarea,
+.container code {
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 40px;
+  font-family: 'Fantasque Sans Mono';
+  font-size: 16px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 20px;
+  white-space: pre-wrap;
+  position: relative;
+  tab-size: 4;
+}
+.container textarea {
+  opacity: 0;
+  background: none;
+  color: #fff;
+}
+
+.container pre {
+  width: calc(100% - 80px);
+  position: absolute;
+  top: 7px;
+}
+
+.container:hover textarea {
+  opacity: 1;
+}
+.container textarea:active,
+.container textarea:focus {
+  opacity: 1;
+}
+.container textarea:active ~ pre,
+.container textarea:focus ~ pre {
+  display: none;
+}
+.container:hover pre {
+  display: none;
+}
+
+.formArea .head {
+  background: #222;
+  box-shadow: 0 8px 0 #242424;
+  border-radius: 4px;
+  display: flex;
+  overflow: hidden;
+  z-index: -1;
+  margin-bottom: -4px;
+  line-height: 45px;
+}
+.space {
+  flex: 1;
+}
+
+#lines {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  color: #444;
+  line-height: 20px;
+  font-size: 16px;
+}
+
+#lines > div {
+  height: 20px;
+  width: 40px;
+  text-align: right;
+  font-family: 'Fantasque Sans Mono';
+}
+#form {
+  padding: 10px;
+  position: relative;
+  margin: -14px -10px -10px;
+}
+
+.formArea .head > button {
+  line-height: 45px;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  width: 140px;
+  flex: 0 auto;
+}
+.formArea .head > button:hover {
+  background: #ccc;
+  color: #000;
+}
+
+.codeImage {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px solid #888;
+}
