@@ -1,4 +1,4 @@
-# Light web app for getting image of code snippets
+# Web app for getting image of code snippets
 
 ## Site:
 
