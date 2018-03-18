@@ -21,9 +21,8 @@ class textForm {
   }
   getLinesCount () {
     let height = this.lines.length
-    this.lines.forEach((line, i) => {
-      let lineLength = Math.floor(line.length / 80)
-      for (let i = 0; i < lineLength; i++) height++
+    this.lines.forEach((line) => {
+      height += Math.floor(line.length / 80)
     })
     return height
   }
