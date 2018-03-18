@@ -12,3 +12,11 @@ https://decloud.cc/pastebin/
 ## Fonts:
 
 * Fantasque Sans Mono: https://github.com/belluzj/fantasque-sans
+
+### TODO:
+
+* Language chooser
+* Default hotkeys
+* * Ctrl  + K for delete line
+* * Shift + Tab for remove tab
+* Svg image
