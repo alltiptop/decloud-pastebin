@@ -16,7 +16,11 @@ https://decloud.cc/pastebin/
 ### TODO:
 
 * Language chooser
-* Default hotkeys
+* Labels on line (like breakpoint)
+* Default hotkeys:
 * * Ctrl  + K for delete line
 * * Shift + Tab for remove tab
 * Svg image
+* Style:
+* * Style chooser (from highlight.js)
+* * CSS editor
