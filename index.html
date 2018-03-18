@@ -13,22 +13,22 @@
   <body>
     <section class="formArea">
       <div class="head">
-        <input class="lineNumber" type="number" max="99990" min="1" oninput="setStartLine(event)" value="1" />
+        <input class="lineNumber" type="number" max="99990" min="1" oninput="lines.setStart(event)" value="1" />
         <div class="space"></div>
-        <button onclick="showImage()" id="showImage">
+        <button onclick="image.show()" id="showImage">
           Show
         </button>
-        <button onclick="hideImage()" style="display: none" id="hideImage">
+        <button onclick="image.hide()" style="display: none" id="hideImage">
           Hide
         </button>
-        <button onclick="saveImage()">
+        <button onclick="image.save()">
           Save
         </button>
       </div>
       <div id="form">
         <div class="container">
           <div id="lines"></div>
-          <textarea id="textarea">/*                                                      ↑                ↑
+          <textarea id="textarea" onkeydown="hotkeys.check(event)" oninput="editor.update(event)">/*                                                      ↑                ↑
  * Paste code here                               See preview here   Save as png
  */</textarea>
           <pre><code id="code"></code></pre>
