@@ -62,7 +62,6 @@ const hotkeys = {
 const editor = {
   resize: (value = textarea.value, target = textarea) => {
     const text = new textForm(value)
-    let height = text.getLines(value).length
     lines.update(value)
     target.style.height = text.getLinesCount() * 20 + 20 + 'px'
   },
@@ -122,10 +121,10 @@ const image = {
 const lines = {
   start: 1,
   container: document.getElementById('lines'),
-  block: (number = null) => {
+  createLine (number = null, index = null) {
     const el = document.createElement('div')
     el.innerHTML = number
-    return el
+    this.container.appendChild(el)
   },
   update (value = "") {
     while (this.container.firstChild) {
@@ -133,13 +132,11 @@ const lines = {
     }
     let index = Number(this.start)
     const text = new textForm(value)
-    text.getLines(value).forEach((line, i) => {
-      let newLine = this.block(index)
-      this.container.appendChild(newLine)
-      let lineLength = Math.floor(line.length / 80)
+    text.getLines().forEach((line, i) => {
+      this.createLine(index)
+      const lineLength = Math.floor(line.length / 80)
       for (let i = 0; i < lineLength; i++) {
-        const clearLine = this.block()
-        this.container.appendChild(clearLine)
+        this.createLine()
       }
       index ++
     })
