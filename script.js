@@ -1,5 +1,7 @@
 "use strict"
 
+let startLine = 1
+
 const form = document.getElementById('form'),
       textarea = document.getElementById('textarea'),
       numbers = document.getElementById('lines'),
@@ -13,7 +15,7 @@ const getLines = (string = "") => string.split(/\r\n|\r|\n/)
 
 const resize = (value = textarea.value, item = textarea) => {
   let height = getLines(value).length,
-      index = 1
+      index = new Number(startLine)
   while (numbers.firstChild) {
     numbers.removeChild(numbers.firstChild)
   }
@@ -44,7 +46,8 @@ window.onload = () => {
   updateCode()
 }
 
-textarea.onkeydown = (event) => {
+textarea.oninput = (event) => {
+  textarea.value = event.target.value.replace(/\t/g, '    ')
   const value = new String(event.target.value)
   resize(value, textarea)
 
@@ -57,19 +60,7 @@ textarea.onkeydown = (event) => {
     textarea.selectionStart = selectionStart + 4
     textarea.selectionEnd = selectionEnd + 4
   }
-}
-
-textarea.onkeyup = (event) => {
-  textarea.value = event.target.value.replace(/\t/g, '    ')
-  const { value } = event.target
-  resize(value, textarea)
   updateCode(value)
-}
-
-textarea.onchange = (event) => {
-  textarea.value = event.target.value.replace(/\t/g, '    ')
-  resize()
-  updateCode()
 }
 
 /*
@@ -105,4 +96,15 @@ const saveImage = () => {
     link.click()
     document.body.removeChild(link)
   });
+}
+
+/*
+ * Set start line
+ */
+
+const setStartLine = (event) => {
+  const { value } = event.target
+  if (!/^\+?(0|[1-9]\d*)$/.test(value)) return
+  startLine = value
+  resize()
 }

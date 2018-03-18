@@ -133,3 +133,20 @@ body {
   left: 0;
   border: 2px solid #888;
 }
+
+.lineNumber {
+  background: #000;
+  border: none;
+  color: #888;
+  font-family: 'Fantasque Sans Mono';
+  font-size: 16px;
+  text-align: right;
+  width: 60px;
+  padding: 0 10px 0 0;
+  margin: 0;
+}
+.lineNumber::-webkit-inner-spin-button,
+.lineNumber::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
