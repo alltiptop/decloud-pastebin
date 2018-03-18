@@ -7,11 +7,34 @@ const form = document.getElementById('form'),
 
 const canvasOptions = { backgroundColor: null }
 
-const getLines = (string = "") => string.split(/\r\n|\r|\n/)
+/*
+ * Get text properties for lines calculations and other
+ */
+
+class textForm {
+  constructor (data = "") {
+    this.value = data.value ? data.value : data
+    this.lines = this.value.split(/\r\n|\r|\n/)
+  }
+  getLines () {
+    return this.lines
+  }
+  getLinesCount () {
+    let height = this.lines.length
+    this.lines.forEach((line, i) => {
+      let lineLength = Math.floor(line.length / 80)
+      for (let i = 0; i < lineLength; i++) height++
+    })
+    return height
+  }
+}
+
+/*
+ * Editor hotheys
+ */
 
 const hotkeys = {
   check ({ which }) {
-    console.log(which)
     if (!which) return
     switch (which) {
       case 9:
@@ -27,20 +50,22 @@ const hotkeys = {
     event.target.value = value.substring(0, selectionStart) +
                          '    ' +
                          value.substring(selectionEnd)
-    event.selectionStart = selectionStart + 4
-    event.selectionEnd = selectionEnd + 4
+    event.target.selectionStart = selectionStart + 4
+    event.target.selectionEnd = selectionEnd + 4
   }
 }
 
+
+/*
+ * Editor events
+ */
+
 const editor = {
-  resize: (value = textarea.value, item = textarea) => {
-    let height = getLines(value).length
+  resize: (value = textarea.value, target = textarea) => {
+    const text = new textForm(value)
+    let height = text.getLines(value).length
     lines.update(value)
-    getLines(value).forEach((line, i) => {
-      let lineLength = Math.floor(line.length / 80)
-      for (let i = 0; i < lineLength; i++) height++
-    })
-    item.style.height = height * 20 + 20 + 'px'
+    target.style.height = text.getLinesCount() * 20 + 20 + 'px'
   },
   updateCode: (value = "") => {
     const colorized = self.hljs.highlightAuto(value)
@@ -49,15 +74,9 @@ const editor = {
   update (event) {
     event.target.value = event.target.value.replace(/\t/g, '    ')
     const { value } = event.target
-    this.resize(value, textarea)
+    this.resize(value, event.target)
     this.updateCode(value)
   }
-}
-
-window.onload = () => {
-  const textarea = document.getElementById('textarea')
-  editor.updateCode(textarea.value)
-  editor.resize(textarea.value)
 }
 
 /*
@@ -114,7 +133,8 @@ const lines = {
       this.container.removeChild(this.container.firstChild)
     }
     let index = Number(this.start)
-    getLines(value).forEach((line, i) => {
+    const text = new textForm(value)
+    text.getLines(value).forEach((line, i) => {
       let newLine = this.block(index)
       this.container.appendChild(newLine)
       let lineLength = Math.floor(line.length / 80)
@@ -131,4 +151,10 @@ const lines = {
     this.start = value
     editor.resize()
   }
+}
+
+window.onload = () => {
+  const textarea = document.getElementById('textarea')
+  editor.updateCode(textarea.value)
+  editor.resize(textarea.value)
 }
