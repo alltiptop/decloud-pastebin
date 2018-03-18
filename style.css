@@ -51,6 +51,8 @@ body {
   opacity: 0;
   background: none;
   color: #fff;
+  overflow: hidden;
+  resize: none;
 }
 
 .container pre {

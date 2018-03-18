@@ -22,7 +22,7 @@ const resize = (value = textarea.value, item = textarea) => {
     newLine.innerHTML = index
     numbers.appendChild(newLine)
     let lineLength = Math.floor(line.length / 80)
-    if (Math.floor(line.length / 80) > 1) {
+    if (Math.floor(line.length / 80) > 0) {
       for (let i = 0; i < lineLength; i++) {
         height++
         const clearLine = document.createElement('div')
@@ -52,18 +52,22 @@ textarea.onkeydown = (event) => {
     event.preventDefault()
     const { selectionStart, selectionEnd } = event.target
     textarea.value = value.substring(0, selectionStart) +
-                     '\t' +
+                     '    ' +
                      value.substring(selectionEnd)
+    textarea.selectionStart = selectionStart + 4
+    textarea.selectionEnd = selectionEnd + 4
   }
 }
 
 textarea.onkeyup = (event) => {
-  const value = event.target.value
+  textarea.value = event.target.value.replace(/\t/g, '    ')
+  const { value } = event.target
   resize(value, textarea)
   updateCode(value)
 }
 
-textarea.onchange = () => {
+textarea.onchange = (event) => {
+  textarea.value = event.target.value.replace(/\t/g, '    ')
   resize()
   updateCode()
 }
