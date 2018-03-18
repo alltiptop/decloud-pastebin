@@ -21,10 +21,13 @@ const resize = (value = textarea.value, item = textarea) => {
     const newLine = document.createElement('div')
     newLine.innerHTML = index
     numbers.appendChild(newLine)
-    if (line.length > 80) {
-      height++
-      const clearLine = document.createElement('div')
-      numbers.appendChild(clearLine)
+    let lineLength = Math.floor(line.length / 80)
+    if (Math.floor(line.length / 80) > 1) {
+      for (let i = 0; i < lineLength; i++) {
+        height++
+        const clearLine = document.createElement('div')
+        numbers.appendChild(clearLine)
+      }
     }
     index ++
   })
